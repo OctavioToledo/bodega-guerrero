@@ -4,7 +4,7 @@
  */
 
 /** Número de WhatsApp que recibe los pedidos: formato internacional, sin "+" ni espacios (54 9 + característica sin 0 + número sin 15). */
-export const WHATSAPP_NUMBER = '5492610000000'
+export const WHATSAPP_NUMBER = '5492634408957'
 
 /** Botellas por caja. El pedido siempre es múltiplo de este número. */
 export const BOX_SIZE: number = 6
@@ -18,7 +18,7 @@ export const BOX_DISCOUNT: number = 0
 export const BODEGA = {
   nombre: 'Bodega Guerrero',
   /** Cómo se muestra el WhatsApp en el sitio */
-  whatsappVisible: '261 000-0000',
+  whatsappVisible: '263 440-8957',
   direccion: 'Ruta Provincial 15, km 29',
   localidad: 'Luján de Cuyo',
   provincia: 'Mendoza',
