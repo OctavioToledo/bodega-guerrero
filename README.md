@@ -11,10 +11,21 @@ npm test         # tests de las reglas de venta y del mensaje
 npm run build    # genera dist/
 ```
 
-## Publicar en Vercel
+## Publicar en Cloudflare Pages
 
-1. Subir el proyecto a GitHub e importarlo en Vercel. Detecta Vite solo (build `npm run build`, salida `dist`).
-2. Cuando esté el dominio propio, cargar la variable `VITE_SITE_URL` (ej. `https://bodegaguerrero.com.ar`) en *Settings → Environment Variables*. Se usa para la imagen de vista previa al compartir el link. Mientras no esté, se usa sola la URL de Vercel.
+1. En Cloudflare: **Workers & Pages → Create → Pages → Connect to Git** y elegir el repo `bodega-guerrero`.
+2. Configuración del build:
+   - Framework preset: **Vite** (o "None")
+   - Build command: `npm run build`
+   - Build output directory: `dist`
+   - La versión de Node la toma sola del archivo `.node-version`.
+3. En **Environment variables**, cargar `VITE_SITE_URL` con la URL del sitio, sin barra final (ej. `https://bodega-guerrero.pages.dev`). Se usa para la imagen de vista previa al compartir el link por WhatsApp e Instagram.
+4. **Save and Deploy**. Desde ahí, cada push a `main` publica el sitio solo.
+
+### Dominio propio
+
+1. En el proyecto de Pages: **Custom domains → Set up a custom domain** y seguir los pasos (con un dominio `.com.ar` de NIC Argentina, se apuntan los DNS a Cloudflare o se carga el registro CNAME que indica).
+2. Cambiar `VITE_SITE_URL` por el dominio nuevo (ej. `https://bodegaguerrero.com.ar`) y volver a publicar (**Deployments → Retry deployment**) para que la vista previa use el dominio.
 
 ## Qué se edita y dónde
 

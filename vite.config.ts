@@ -41,9 +41,10 @@ function seoBodega(sitio: string): Plugin {
 }
 
 export default defineConfig(({ mode }) => {
-  // Si no se cargó VITE_SITE_URL, en Vercel se usa el dominio de producción que Vercel expone en el build.
+  // Si no se cargó VITE_SITE_URL, se usa la URL que expone la plataforma en el build:
+  // en Vercel el dominio de producción; en Cloudflare Pages la URL de ese deploy (funciona, pero conviene cargar VITE_SITE_URL).
   const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  const sitio = (loadEnv(mode, process.cwd()).VITE_SITE_URL || (vercel ? `https://${vercel}` : '')).replace(/\/$/, '')
+  const sitio = (loadEnv(mode, process.cwd()).VITE_SITE_URL || (vercel ? `https://${vercel}` : process.env.CF_PAGES_URL) || '').replace(/\/$/, '')
   return {
     plugins: [react(), tailwindcss(), seoBodega(sitio)],
     test: {
