@@ -1,0 +1,293 @@
+@import 'tailwindcss';
+
+/* Tailwind publica estas variables en :root (ej. var(--color-bordo)) y genera las clases (bg-bordo, text-dorado…). */
+@theme {
+  --color-negro: #14110f;
+  --color-negro-suave: #1e1a17;
+  --color-bordo: #6e1d2b;
+  --color-bordo-claro: #7a2436;
+  /* Dorado: solo detalles (filetes, íconos, bordes, precios sobre fondo oscuro). Sobre crema no alcanza contraste para texto. */
+  --color-dorado: #c9a227;
+  --color-crema: #f7f3ec;
+  --color-crema-oscuro: #ede6da;
+  --color-blanco: #ffffff;
+  --color-texto: #2b2320;
+
+  /* Colores de las botellas en la caja mixta */
+  --color-vino-tinto: #6e1d2b;
+  --color-vino-blanco: #e3cf8a;
+  --color-vino-rosado: #e0a3a3;
+
+  --font-serif: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --text-titulo-sm: 2rem;
+  --text-titulo: 2.75rem;
+  --text-titulo-lg: 4.25rem;
+
+  --ease-suave: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-crema);
+    color: var(--color-texto);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+
+  button:not(:disabled),
+  [role='button'],
+  label:has(> input),
+  summary {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-bordo);
+    outline-offset: 3px;
+  }
+
+  .oscuro :focus-visible {
+    outline-color: var(--color-dorado);
+  }
+}
+
+@layer components {
+  /* Etiqueta chica en mayúsculas espaciadas ("NUESTROS VINOS") */
+  .etiqueta {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .boton {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition:
+      background-color 200ms var(--ease-suave),
+      border-color 200ms var(--ease-suave),
+      color 200ms var(--ease-suave);
+  }
+  .boton:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+  .boton-primario {
+    background: var(--color-bordo);
+    color: var(--color-blanco);
+  }
+  .boton-primario:not(:disabled):hover {
+    background: var(--color-bordo-claro);
+  }
+  /* Sobre fondo oscuro: contorno dorado */
+  .boton-dorado {
+    border-color: var(--color-dorado);
+    color: var(--color-crema);
+  }
+  .boton-dorado:not(:disabled):hover {
+    background: color-mix(in srgb, var(--color-dorado) 14%, transparent);
+  }
+  /* Sobre fondo claro: contorno sutil que pasa a bordó */
+  .boton-contorno {
+    border-color: color-mix(in srgb, var(--color-texto) 35%, transparent);
+    color: var(--color-texto);
+  }
+  .boton-contorno:not(:disabled):hover {
+    border-color: var(--color-bordo);
+    color: var(--color-bordo);
+  }
+
+  /* Botón cuadrado de ícono (±, cerrar, eliminar): área táctil de 44px */
+  .boton-icono {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    place-items: center;
+    border-radius: 2px;
+    transition: background-color 150ms;
+  }
+  .boton-icono:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+  }
+
+  /* Filete fino con un rombo al centro, entre secciones */
+  .ornamento {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.875rem;
+    color: var(--color-dorado);
+  }
+  .ornamento::before,
+  .ornamento::after {
+    content: '';
+    height: 1px;
+    width: min(5rem, 22vw);
+    background: linear-gradient(to right, transparent, currentColor);
+  }
+  .ornamento::after {
+    background: linear-gradient(to left, transparent, currentColor);
+  }
+
+  .chip {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    border: 1px solid color-mix(in srgb, var(--color-texto) 22%, transparent);
+    border-radius: 999px;
+    padding: 0 1.125rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition:
+      border-color 150ms,
+      background-color 150ms,
+      color 150ms;
+  }
+  .chip:hover {
+    border-color: var(--color-bordo);
+  }
+  .chip[aria-pressed='true'] {
+    border-color: var(--color-bordo);
+    background: var(--color-bordo);
+    color: var(--color-blanco);
+  }
+
+  .campo {
+    display: block;
+    min-height: 44px;
+    width: 100%;
+    margin-top: 0.375rem;
+    border: 1px solid color-mix(in srgb, var(--color-texto) 28%, transparent);
+    border-radius: 2px;
+    background: var(--color-blanco);
+    padding: 0.625rem 0.75rem;
+    font-size: 1rem;
+  }
+  .campo:focus {
+    border-color: var(--color-bordo);
+  }
+}
+
+/* Aparición suave al hacer scroll (ver useRevelar) */
+.revelar {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 900ms var(--ease-suave),
+    transform 900ms var(--ease-suave);
+  transition-delay: var(--retraso, 0ms);
+}
+.revelar.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+.aparecer {
+  animation: aparecer 1100ms var(--ease-suave) both;
+  animation-delay: var(--retraso, 0ms);
+}
+
+@keyframes latir {
+  0%,
+  100% {
+    transform: none;
+  }
+  40% {
+    transform: scale(1.25);
+  }
+}
+.latir {
+  animation: latir 380ms ease-out;
+}
+
+@keyframes fundido {
+  from {
+    opacity: 0;
+  }
+}
+.fundido {
+  animation: fundido 250ms ease-out;
+}
+
+@keyframes subir {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes desde-derecha {
+  from {
+    transform: translateX(100%);
+  }
+}
+.panel-drawer {
+  animation: subir 280ms var(--ease-suave);
+}
+@media (min-width: 768px) {
+  .panel-drawer {
+    animation-name: desde-derecha;
+  }
+}
+
+/* Casillero de la caja mixta que se acaba de llenar */
+@keyframes llenar {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.92);
+  }
+}
+.llenar {
+  animation: llenar 450ms var(--ease-suave);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .revelar {
+    opacity: 1;
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

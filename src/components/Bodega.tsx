@@ -1,0 +1,64 @@
+import { BODEGA, TEXTOS } from '../config'
+import { IconoPin } from './Iconos'
+import { Revelar } from './Revelar'
+
+export function Bodega() {
+  const { bodega, fotos } = TEXTOS
+  const [principal, ...resto] = fotos.bodega
+
+  return (
+    <section id="bodega" aria-labelledby="bodega-titulo" className="bg-blanco">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 md:px-8 md:py-28 lg:grid-cols-2 lg:items-center lg:gap-20">
+        <Revelar>
+          <p className="etiqueta text-bordo">La bodega</p>
+          <h2 id="bodega-titulo" className="mt-4 text-titulo-sm leading-tight md:text-titulo">
+            {bodega.titulo}
+          </h2>
+          <div className="mt-5 h-px w-16 bg-dorado" aria-hidden />
+          <div className="mt-6 flex flex-col gap-4 text-lg leading-relaxed text-texto/85">
+            {bodega.parrafos.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+          <p className="mt-8 flex items-start gap-3 border-t border-texto/10 pt-6">
+            <IconoPin className="mt-0.5 shrink-0 text-bordo" />
+            <span>
+              <span className="font-semibold">{BODEGA.direccion}</span>
+              <br />
+              {BODEGA.localidad}, {BODEGA.provincia} ·{' '}
+              <a href="#contacto" className="text-bordo underline decoration-dorado underline-offset-4 hover:decoration-bordo">
+                Cómo llegar
+              </a>
+            </span>
+          </p>
+        </Revelar>
+
+        <Revelar retraso={150} className="grid grid-cols-2 gap-3 md:gap-4">
+          {principal && (
+            <img
+              src={principal.src}
+              alt={principal.alt}
+              width={1200}
+              height={900}
+              loading="lazy"
+              decoding="async"
+              className="col-span-2 aspect-[4/3] w-full object-cover"
+            />
+          )}
+          {resto.map((f) => (
+            <img
+              key={f.src}
+              src={f.src}
+              alt={f.alt}
+              width={1200}
+              height={900}
+              loading="lazy"
+              decoding="async"
+              className={`aspect-[4/3] w-full object-cover ${resto.length === 1 ? 'col-span-2' : ''}`}
+            />
+          ))}
+        </Revelar>
+      </div>
+    </section>
+  )
+}
