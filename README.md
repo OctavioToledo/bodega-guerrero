@@ -11,21 +11,21 @@ npm test         # tests de las reglas de venta y del mensaje
 npm run build    # genera dist/
 ```
 
-## Publicar en Cloudflare Pages
+## Publicación
 
-1. En Cloudflare: **Workers & Pages → Create → Pages → Connect to Git** y elegir el repo `bodega-guerrero`.
-2. Configuración del build:
-   - Framework preset: **Vite** (o "None")
-   - Build command: `npm run build`
-   - Build output directory: `dist`
-   - La versión de Node la toma sola del archivo `.node-version`.
-3. En **Environment variables**, cargar `VITE_SITE_URL` con la URL del sitio, sin barra final (ej. `https://bodega-guerrero.pages.dev`). Se usa para la imagen de vista previa al compartir el link por WhatsApp e Instagram.
-4. **Save and Deploy**. Desde ahí, cada push a `main` publica el sitio solo.
+El sitio está publicado en Cloudflare (Workers con archivos estáticos), conectado al repo de GitHub: **cada push a `main` lo vuelve a publicar solo**.
+
+- Sitio: https://bodega-guerrero.octatoledo7.workers.dev
+- Build: `npm run build`, carpeta de salida `dist`. La versión de Node sale del archivo `.node-version`.
+
+### URL del sitio (`.env.production`)
+
+`VITE_SITE_URL` en `.env.production` es la URL pública, sin barra final. Se usa para la imagen de vista previa al compartir el link por WhatsApp e Instagram, que necesitan una dirección completa. No es un dato secreto, por eso está en el repo.
 
 ### Dominio propio
 
-1. En el proyecto de Pages: **Custom domains → Set up a custom domain** y seguir los pasos (con un dominio `.com.ar` de NIC Argentina, se apuntan los DNS a Cloudflare o se carga el registro CNAME que indica).
-2. Cambiar `VITE_SITE_URL` por el dominio nuevo (ej. `https://bodegaguerrero.com.ar`) y volver a publicar (**Deployments → Retry deployment**) para que la vista previa use el dominio.
+1. En Cloudflare, en el Worker: **Settings → Domains & Routes → Add → Custom domain** y seguir los pasos (con un dominio `.com.ar` de NIC Argentina, hay que delegar los DNS a Cloudflare).
+2. Cambiar `VITE_SITE_URL` en `.env.production` por el dominio nuevo (ej. `https://bodegaguerrero.com.ar`) y hacer push, para que la vista previa use el dominio.
 
 ## Qué se edita y dónde
 
