@@ -4,7 +4,7 @@ import type { TipoVino, Vino } from '../lib/tipos'
 const COLORES: Record<TipoVino, { vidrio: string; liquido: string }> = {
   tinto: { vidrio: '#1f2a20', liquido: '#6E1D2B' },
   blanco: { vidrio: '#7d8a5a', liquido: '#e3cf8a' },
-  rosado: { vidrio: '#e9d3cf', liquido: '#e0a3a3' },
+  rosado: { vidrio: '#e9d3cf', liquido: '#e3a6b0' },
 }
 
 /** Silueta de botella en los colores del tipo de vino. Se usa cuando el vino no tiene foto y en la caja mixta. */
@@ -21,10 +21,17 @@ export function SiluetaBotella({ tipo, className = '' }: { tipo: TipoVino; class
   )
 }
 
+/** Fondo de la foto, apenas teñido con el color de etiqueta del tipo. */
+const FONDO: Record<TipoVino, string> = {
+  tinto: 'from-crema to-crema-oscuro',
+  blanco: 'from-crema to-celeste-claro',
+  rosado: 'from-crema to-rosa-claro',
+}
+
 /** Foto vertical de la botella sobre fondo claro. */
 export function FotoVino({ vino }: { vino: Vino }) {
   return (
-    <div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-b from-crema to-crema-oscuro p-5 sm:aspect-[3/4] sm:p-6">
+    <div className={`flex aspect-[4/3] items-center justify-center bg-gradient-to-b ${FONDO[tipoDe(vino)]} p-5 sm:aspect-[3/4] sm:p-6`}>
       {vino.foto ? (
         <img
           src={vino.foto}

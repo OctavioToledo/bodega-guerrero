@@ -11,7 +11,7 @@ const ubicacion = `${lat},${lng}`
 function Dato({ icono, titulo, children }: { icono: ReactNode; titulo: string; children: ReactNode }) {
   return (
     <div className="flex gap-4">
-      <div className="grid size-11 shrink-0 place-items-center rounded-full border border-dorado text-bordo">{icono}</div>
+      <div className="grid size-11 shrink-0 place-items-center rounded-full border border-rosa bg-blanco text-bordo">{icono}</div>
       <div>
         <h3 className="etiqueta text-[11px] text-texto/70">{titulo}</h3>
         <div className="mt-1.5 leading-relaxed">{children}</div>
@@ -24,7 +24,7 @@ const claseLink = 'underline decoration-dorado underline-offset-4 hover:text-bor
 
 export function Contacto() {
   return (
-    <section id="contacto" aria-labelledby="contacto-titulo" className="bg-crema">
+    <section id="contacto" aria-labelledby="contacto-titulo" className="bg-rosa-claro">
       <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
         <Encabezado id="contacto-titulo" etiqueta="Contacto" titulo="Visitanos o escribinos" bajada="Coordinamos pedidos, envíos y visitas por WhatsApp. Te respondemos a la brevedad." />
 

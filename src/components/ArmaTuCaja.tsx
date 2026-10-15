@@ -31,7 +31,7 @@ export function ArmaTuCaja() {
   }
 
   return (
-    <section id="arma-tu-caja" aria-labelledby="arma-titulo" className="oscuro bg-negro text-crema">
+    <section id="arma-tu-caja" aria-labelledby="arma-titulo" className="oscuro bg-azul text-crema">
       <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
         <Encabezado
           oscuro
@@ -88,7 +88,7 @@ export function ArmaTuCaja() {
           </Revelar>
 
           {/* La caja */}
-          <Revelar retraso={150} className="border border-dorado/40 bg-negro-suave p-6 md:p-8 lg:sticky lg:top-28">
+          <Revelar retraso={150} className="border border-dorado/40 bg-azul-suave p-6 md:p-8 lg:sticky lg:top-28">
             <div className="flex items-baseline justify-between">
               <h3 className="font-serif text-2xl">Tu caja mixta</h3>
               <p className="etiqueta text-dorado">

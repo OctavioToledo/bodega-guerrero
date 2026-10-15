@@ -7,21 +7,21 @@ export function Bodega() {
   const [principal, ...resto] = fotos.bodega
 
   return (
-    <section id="bodega" aria-labelledby="bodega-titulo" className="bg-blanco">
+    <section id="bodega" aria-labelledby="bodega-titulo" className="bg-celeste-claro">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 md:px-8 md:py-28 lg:grid-cols-2 lg:items-center lg:gap-20">
         <Revelar>
-          <p className="etiqueta text-bordo">La bodega</p>
+          <p className="etiqueta text-azul">La bodega</p>
           <h2 id="bodega-titulo" className="mt-4 text-titulo-sm leading-tight md:text-titulo">
             {bodega.titulo}
           </h2>
-          <div className="mt-5 h-px w-16 bg-dorado" aria-hidden />
+          <div className="franja mt-5" aria-hidden />
           <div className="mt-6 flex flex-col gap-4 text-lg leading-relaxed text-texto/85">
             {bodega.parrafos.map((p) => (
               <p key={p}>{p}</p>
             ))}
           </div>
-          <p className="mt-8 flex items-start gap-3 border-t border-texto/10 pt-6">
-            <IconoPin className="mt-0.5 shrink-0 text-bordo" />
+          <p className="mt-8 flex items-start gap-3 border-t border-azul/15 pt-6">
+            <IconoPin className="mt-0.5 shrink-0 text-azul" />
             <span>
               <span className="font-semibold">{BODEGA.direccion}</span>
               <br />

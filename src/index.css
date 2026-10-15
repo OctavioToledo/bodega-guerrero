@@ -12,11 +12,18 @@
   --color-crema-oscuro: #ede6da;
   --color-blanco: #ffffff;
   --color-texto: #2b2320;
+  /* Colores de las etiquetas de la bodega: celeste y rosa para fondos y detalles suaves, azul para la sección de la caja y acentos de texto. */
+  --color-azul: #1d3557;
+  --color-azul-suave: #26436a;
+  --color-celeste: #9cc7dc;
+  --color-celeste-claro: #eaf3f7;
+  --color-rosa: #e3a6b0;
+  --color-rosa-claro: #f9eeee;
 
   /* Colores de las botellas en la caja mixta */
   --color-vino-tinto: #6e1d2b;
   --color-vino-blanco: #e3cf8a;
-  --color-vino-rosado: #e0a3a3;
+  --color-vino-rosado: #e3a6b0;
 
   --font-serif: 'Cormorant Garamond', Garamond, Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -160,6 +167,19 @@
     background: linear-gradient(to left, transparent, currentColor);
   }
 
+  /* Filete corto en los colores de las etiquetas */
+  .franja {
+    display: flex;
+    height: 3px;
+    width: 4.5rem;
+    background: linear-gradient(
+      to right,
+      var(--color-bordo) 0 33.3%,
+      var(--color-rosa) 33.3% 66.6%,
+      var(--color-celeste) 66.6%
+    );
+  }
+
   .chip {
     display: inline-flex;
     min-height: 44px;
@@ -175,11 +195,11 @@
       color 150ms;
   }
   .chip:hover {
-    border-color: var(--color-bordo);
+    border-color: var(--color-azul);
   }
   .chip[aria-pressed='true'] {
-    border-color: var(--color-bordo);
-    background: var(--color-bordo);
+    border-color: var(--color-azul);
+    background: var(--color-azul);
     color: var(--color-blanco);
   }
 

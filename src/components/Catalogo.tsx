@@ -8,12 +8,15 @@ import { ControlCajas } from './ControlCajas'
 import { Encabezado } from './Encabezado'
 import { FotoVino } from './FotoVino'
 
+/** Filete superior de cada tarjeta, en el color de etiqueta de su tipo. */
+const ACENTO_TIPO: Record<TipoVino, string> = { tinto: 'border-t-bordo', blanco: 'border-t-celeste', rosado: 'border-t-rosa' }
+
 function TarjetaVino({ vino }: { vino: Vino }) {
   return (
-    <li className="group flex flex-col border border-crema-oscuro bg-blanco transition-[border-color,box-shadow] duration-300 hover:border-dorado hover:shadow-[0_18px_40px_-24px_rgb(20_17_15/0.35)]">
+    <li className={`group flex flex-col border border-t-[3px] border-crema-oscuro bg-blanco ${ACENTO_TIPO[tipoDe(vino)]} transition-[border-color,box-shadow] duration-300 hover:border-dorado hover:shadow-[0_18px_40px_-24px_rgb(20_17_15/0.35)]`}>
       <div className="relative">
         <FotoVino vino={vino} />
-        {vino.destacado && <span className="etiqueta absolute top-4 left-4 bg-blanco px-2.5 py-1 text-[10px] text-bordo">Destacado</span>}
+        {vino.destacado && <span className="etiqueta absolute top-4 left-4 bg-rosa px-2.5 py-1 text-[10px] text-bordo">Destacado</span>}
       </div>
       <div className="flex flex-1 flex-col p-5 md:p-6">
         <p className="etiqueta text-[11px] text-bordo">{vino.linea}</p>
@@ -69,7 +72,7 @@ export function Catalogo() {
             ))}
           {tiposPresentes.length > 1 && (
             <>
-              <span className="mx-1 hidden h-6 w-px bg-dorado sm:block" aria-hidden />
+              <span className="mx-1 hidden h-6 w-px bg-celeste sm:block" aria-hidden />
               {tiposPresentes.map((t) => (
                 <button key={t.id} type="button" className="chip" aria-pressed={tipo === t.id} onClick={() => setTipo(tipo === t.id ? null : t.id)}>
                   {t.nombre}
