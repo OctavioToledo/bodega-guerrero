@@ -14,6 +14,8 @@ export interface Vino {
   cata?: { vista: string; nariz: string; boca: string }
   /** Ruta dentro de `public/` (ej. "/fotos/malbec-reserva.jpg"). `null` muestra una botella ilustrada. */
   foto: string | null
+  /** Botella recortada, sin fondo (PNG o WebP con transparencia), para el mostrador de "La bodega". Sin esto, el vino no aparece ahí. */
+  recorte?: string | null
   destacado: boolean
   /** Si es `false`, el vino no aparece en el sitio. Si se omite, se considera disponible. */
   disponible?: boolean

@@ -1,10 +1,10 @@
 import { BODEGA, TEXTOS } from '../config'
+import { Mostrador } from './Mostrador'
 import { IconoCaja, IconoPin } from './Iconos'
 import { Revelar } from './Revelar'
 
 export function Bodega() {
-  const { bodega, fotos } = TEXTOS
-  const [principal, ...resto] = fotos.bodega
+  const { bodega } = TEXTOS
 
   return (
     <section id="bodega" aria-labelledby="bodega-titulo" className="bg-celeste-claro">
@@ -44,30 +44,8 @@ export function Bodega() {
           </ul>
         </Revelar>
 
-        <Revelar retraso={150} className="grid grid-cols-2 gap-3 md:gap-4">
-          {principal && (
-            <img
-              src={principal.src}
-              alt={principal.alt}
-              width={1200}
-              height={600}
-              loading="lazy"
-              decoding="async"
-              className="col-span-2 aspect-[2/1] w-full object-cover"
-            />
-          )}
-          {resto.map((f) => (
-            <img
-              key={f.src}
-              src={f.src}
-              alt={f.alt}
-              width={1200}
-              height={900}
-              loading="lazy"
-              decoding="async"
-              className={`aspect-[4/3] w-full object-cover ${resto.length === 1 ? 'col-span-2' : ''}`}
-            />
-          ))}
+        <Revelar retraso={150} className="min-w-0">
+          <Mostrador />
         </Revelar>
       </div>
     </section>

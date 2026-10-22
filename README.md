@@ -79,6 +79,7 @@ Un bloque por vino, con las mismas columnas que la planilla de carga:
 - **Agregar un vino**: copiar un bloque, cambiar el `id` (único, en minúsculas y con guiones) y los datos. Ojo con las comas entre bloques.
 - **Quitar un vino temporalmente**: `"disponible": false`. Para sacarlo del todo, borrar el bloque.
 - **`anada`**: `null` si el vino no tiene añada.
+- **`recorte`**: la botella sin fondo para el mostrador de "La bodega". Sin este campo, el vino no aparece en el mostrador.
 - **`cata`**: nota de cata (vista, nariz, boca) que se despliega en la tarjeta. Se puede omitir.
 - **`destacado`**: muestra la etiqueta "Destacado" y lo prioriza en las sugerencias de la caja mixta.
 - Los filtros se arman solos con los valores de `linea` (hoy: Dulce natural, Seco, Sin alcohol). Tinto, blanco o rosado se deduce del varietal.
@@ -89,7 +90,7 @@ Van en `public/fotos/`. Las botellas son las fotos de la bodega; el hero es una 
 
 - **Botellas**: vertical, botella completa, fondo claro y liso, idealmente 600×800 px, en `.jpg` o `.webp`. Copiar el archivo a `public/fotos/` y poner el nombre en el campo `foto` del vino (ej. `"/fotos/malbec-reserva.jpg"`). Con `"foto": null` se muestra una botella ilustrada.
 - **Hero**: horizontal, 1920×1080 aprox. Cambiar `TEXTOS.fotos.hero`.
-- **La bodega**: la primera foto va grande en 2:1 (1200×600); si se agregan más, van de a dos en 4:3. Cambiar `TEXTOS.fotos.bodega`, cada una con su texto alternativo (`alt`).
+- **Mostrador de "La bodega"**: las botellas en fila, en 3D, con la elegida al frente. Usa el campo `recorte` de cada vino: la botella sola, sin fondo (`.webp` o `.png` con transparencia, alrededor de 1000 px de alto, recortada justo al borde de la botella), en `public/fotos/botellas/`. Gira solo cada 4 s (`INTERVALO` en `src/components/Mostrador.tsx`); se frena con el mouse encima y tiene flechas y botón de pausa.
 - **Vista previa al compartir** (`public/og.jpg`, 1200×630), **favicon** (`public/favicon.png`) e **ícono de iPhone** (`public/apple-touch-icon.png`, 180×180): generados a partir del logo de la bodega.
 - **Logo**: la hoja dorada (`public/logo-hoja.png`, con transparencia) junto al nombre en texto, en `src/components/Header.tsx`, `Footer.tsx` y `AvisoEdad.tsx`.
 

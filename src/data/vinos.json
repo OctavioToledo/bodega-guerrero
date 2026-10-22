@@ -13,6 +13,7 @@
       "boca": "Entrada dulce y fresca, con acidez que equilibra bien el azúcar natural. Sensación ligera y refrescante, con textura suave y aterciopelada. Final medio, dejando recuerdos a fruta madura y miel delicada."
     },
     "foto": "/fotos/ave-maria.jpg",
+    "recorte": "/fotos/botellas/ave-maria.webp",
     "destacado": true,
     "disponible": true
   },
@@ -30,6 +31,7 @@
       "boca": "Entrada dulce y jugosa, con buena acidez que equilibra el dulzor natural. Textura ligera y fresca, con un final corto a medio donde dominan las frutas rojas maduras y un retrogusto levemente floral."
     },
     "foto": "/fotos/ladronzuelo.jpg",
+    "recorte": "/fotos/botellas/ladronzuelo.webp",
     "destacado": true,
     "disponible": true
   },
@@ -47,6 +49,7 @@
       "boca": "Entrada dulce y amable, con taninos muy suaves y redondeados. La acidez equilibra el dulzor, logrando un paladar fresco y fácil de beber. El final es medio, con persistencia de frutas rojas dulces y un dejo confitado."
     },
     "foto": "/fotos/los-teritos-dulce.jpg",
+    "recorte": "/fotos/botellas/los-teritos-dulce.webp",
     "destacado": true,
     "disponible": true
   },
@@ -64,6 +67,7 @@
       "boca": "Entrada amable, con taninos suaves y redondos. Cuerpo medio a pleno, destacando una fruta roja jugosa en equilibrio con una buena acidez que aporta frescura. Final largo, con persistencia frutal y un toque floral que refuerza su elegancia."
     },
     "foto": "/fotos/los-teritos-malbec.jpg",
+    "recorte": "/fotos/botellas/los-teritos-malbec.webp",
     "destacado": false,
     "disponible": true
   },
@@ -81,6 +85,7 @@
       "boca": "Entrada fresca y jugosa, taninos finos y redondos, cuerpo medio y un perfil frutal que se equilibra con una ligera nota especiada y vegetal, propia del Cabernet Franc."
     },
     "foto": "/fotos/los-teritos-cabernet-franc.jpg",
+    "recorte": "/fotos/botellas/los-teritos-cabernet-franc.webp",
     "destacado": false,
     "disponible": true
   },
@@ -98,6 +103,7 @@
       "boca": "Entrada amable, de cuerpo medio y taninos suaves, con frescura marcada que equilibra la fruta. Predominan sabores a cereza y frutilla madura, acompañados de un toque especiado y mineral. Final jugoso, armónico y persistente."
     },
     "foto": "/fotos/lambrusco-maestri.jpg",
+    "recorte": "/fotos/botellas/lambrusco-maestri.webp",
     "destacado": false,
     "disponible": false
   },
@@ -115,6 +121,7 @@
       "boca": "Dulce y fresco, con acidez equilibrada que realza su carácter frutal. Presenta una sensación suave y aterciopelada, con paso ligero y buena persistencia."
     },
     "foto": "/fotos/ave-maria-jugo.jpg",
+    "recorte": "/fotos/botellas/ave-maria-jugo.webp",
     "destacado": false,
     "disponible": true
   }

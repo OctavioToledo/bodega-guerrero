@@ -296,6 +296,26 @@
   animation: llenar 450ms var(--ease-suave);
 }
 
+/* Mostrador de botellas: el punto de fuga está sobre la repisa, así todas quedan apoyadas en la misma línea */
+.mostrador {
+  --paso: 5.5rem;
+  perspective: 1300px;
+  perspective-origin: 50% calc(100% - 3.75rem);
+}
+@media (min-width: 768px) {
+  .mostrador {
+    --paso: 8rem;
+  }
+}
+.botella-mostrador {
+  --distancia: max(var(--d), -1 * var(--d));
+  transform-origin: 50% 100%;
+  transform: translateX(calc(-50% + var(--d) * var(--paso))) translateZ(calc(var(--distancia) * -170px)) rotateY(calc(var(--d) * -14deg));
+  transition:
+    transform 1100ms var(--ease-suave),
+    opacity 900ms var(--ease-suave);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

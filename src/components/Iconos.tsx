@@ -133,3 +133,19 @@ export function IconoFacebook(props: Props) {
     </svg>
   )
 }
+
+export function IconoPausa(props: Props) {
+  return (
+    <svg {...base} width={16} height={16} {...props}>
+      <path d="M9 5v14M15 5v14" />
+    </svg>
+  )
+}
+
+export function IconoPlay(props: Props) {
+  return (
+    <svg {...base} width={16} height={16} {...props}>
+      <path d="M7 5v14l12-7Z" />
+    </svg>
+  )
+}

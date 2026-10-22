@@ -52,7 +52,5 @@ export const TEXTOS = {
   fotos: {
     /** Imagen de fondo del hero (horizontal, idealmente 1920×1080) */
     hero: '/fotos/hero-vinedo.jpg',
-    /** Fotos de la sección "La bodega". La primera va grande (2:1); las siguientes, de a dos (4:3). */
-    bodega: [{ src: '/fotos/vinos-dulces.jpg', alt: 'Ave María, Ladronzuelo y Los Teritos, nuestros vinos dulces naturales, junto a sus copas' }],
   },
 }
