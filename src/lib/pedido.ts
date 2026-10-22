@@ -1,8 +1,8 @@
-import { BOX_DISCOUNT, BOX_SIZE, MIX_STEP } from '../config'
+import { BOX_SIZE, MIX_STEP, PRECIO_CAJA } from '../config'
 import { formatoPrecio, plural } from './formato'
 import type { Vino } from './tipos'
 
-/** Lo que se guarda en localStorage: solo ids y cantidades, los precios se leen siempre del catálogo. */
+/** Lo que se guarda en localStorage: solo ids y cantidades, el precio se lee siempre de la configuración. */
 export interface CajaVino {
   vinoId: string
   cajas: number
@@ -48,44 +48,28 @@ export function botellasDe(items: ItemMixta[]): number {
   return items.reduce((s, i) => s + i.botellas, 0)
 }
 
-export function aplicarDescuento(monto: number, descuento = BOX_DISCOUNT): number {
-  return Math.round(monto * (1 - descuento / 100))
+/** Todas las cajas valen lo mismo, sea de un mismo vino o mixta. */
+export function subtotalVino(linea: Pick<LineaVino, 'cajas'>, precio = PRECIO_CAJA): number {
+  return precio * linea.cajas
 }
 
-/** Precio de una caja cerrada de un mismo vino. */
-export function precioCaja(vino: Pick<Vino, 'precio'>, descuento = BOX_DISCOUNT): number {
-  return aplicarDescuento(vino.precio * BOX_SIZE, descuento)
-}
-
-export function subtotalVino(linea: LineaVino, descuento = BOX_DISCOUNT): number {
-  return precioCaja(linea.vino, descuento) * linea.cajas
-}
-
-export function subtotalMixta(items: { vino: Pick<Vino, 'precio'>; botellas: number }[], descuento = BOX_DISCOUNT): number {
-  return aplicarDescuento(
-    items.reduce((s, i) => s + i.vino.precio * i.botellas, 0),
-    descuento,
-  )
-}
-
-export function totales(porVino: LineaVino[], mixtas: LineaMixta[], descuento = BOX_DISCOUNT) {
+export function totales(porVino: LineaVino[], mixtas: LineaMixta[], precio = PRECIO_CAJA) {
   const cajas = porVino.reduce((s, l) => s + l.cajas, 0) + mixtas.length
-  const total = porVino.reduce((s, l) => s + subtotalVino(l, descuento), 0) + mixtas.reduce((s, m) => s + subtotalMixta(m.items, descuento), 0)
-  return { cajas, botellas: cajas * BOX_SIZE, total }
+  return { cajas, botellas: cajas * BOX_SIZE, total: cajas * precio }
 }
 
 /* ---------- Caja mixta en armado ---------- */
 
-/** Suma MIX_STEP botellas de un vino, si entran en la caja. */
-export function sumarAlArmado(armado: ItemMixta[], vinoId: string): ItemMixta[] {
-  if (botellasDe(armado) + MIX_STEP > BOX_SIZE) return armado
+/** Suma `paso` botellas de un vino, si entran en la caja. */
+export function sumarAlArmado(armado: ItemMixta[], vinoId: string, paso = MIX_STEP): ItemMixta[] {
+  if (botellasDe(armado) + paso > BOX_SIZE) return armado
   return armado.some((i) => i.vinoId === vinoId)
-    ? armado.map((i) => (i.vinoId === vinoId ? { ...i, botellas: i.botellas + MIX_STEP } : i))
-    : [...armado, { vinoId, botellas: MIX_STEP }]
+    ? armado.map((i) => (i.vinoId === vinoId ? { ...i, botellas: i.botellas + paso } : i))
+    : [...armado, { vinoId, botellas: paso }]
 }
 
-export function restarDelArmado(armado: ItemMixta[], vinoId: string): ItemMixta[] {
-  return armado.map((i) => (i.vinoId === vinoId ? { ...i, botellas: i.botellas - MIX_STEP } : i)).filter((i) => i.botellas > 0)
+export function restarDelArmado(armado: ItemMixta[], vinoId: string, paso = MIX_STEP): ItemMixta[] {
+  return armado.map((i) => (i.vinoId === vinoId ? { ...i, botellas: i.botellas - paso } : i)).filter((i) => i.botellas > 0)
 }
 
 export function cajaCompleta(items: ItemMixta[]): boolean {
@@ -113,16 +97,16 @@ export function sugerencias(armado: ItemMixta[], catalogo: Vino[], tipoDe: (v: V
 
 const esCantidad = (n: unknown, paso: number): n is number => Number.isInteger(n) && (n as number) > 0 && (n as number) % paso === 0
 
-function sanearItems(crudo: unknown, existe: (id: string) => boolean): ItemMixta[] {
+function sanearItems(crudo: unknown, existe: (id: string) => boolean, paso: number): ItemMixta[] {
   if (!Array.isArray(crudo)) return []
-  return crudo.filter((i): i is ItemMixta => typeof i?.vinoId === 'string' && existe(i.vinoId) && esCantidad(i.botellas, MIX_STEP))
+  return crudo.filter((i): i is ItemMixta => typeof i?.vinoId === 'string' && existe(i.vinoId) && esCantidad(i.botellas, paso))
 }
 
 /**
  * Valida lo leído de localStorage. Descarta vinos que ya no están en el catálogo y cajas que no
  * cumplen las reglas actuales (por si cambiaron BOX_SIZE o MIX_STEP desde la última visita).
  */
-export function sanearPedido(crudo: unknown, existe: (id: string) => boolean): Pedido {
+export function sanearPedido(crudo: unknown, existe: (id: string) => boolean, paso = MIX_STEP): Pedido {
   if (typeof crudo !== 'object' || crudo === null) return PEDIDO_VACIO
   const c = crudo as Record<string, unknown>
 
@@ -132,12 +116,12 @@ export function sanearPedido(crudo: unknown, existe: (id: string) => boolean): P
 
   const mixtas = Array.isArray(c.mixtas)
     ? c.mixtas.flatMap((m) => {
-        const items = sanearItems(m?.items, existe)
+        const items = sanearItems(m?.items, existe, paso)
         return typeof m?.id === 'string' && cajaCompleta(items) ? [{ id: m.id, items }] : []
       })
     : []
 
-  const armado = sanearItems(c.armado, existe)
+  const armado = sanearItems(c.armado, existe, paso)
   return { porVino, mixtas, armado: botellasDe(armado) <= BOX_SIZE ? armado : [] }
 }
 
@@ -156,27 +140,26 @@ export function armarMensaje(
   porVino: LineaVino[],
   mixtas: LineaMixta[],
   datos: DatosCliente,
-  descuento = BOX_DISCOUNT,
+  precio = PRECIO_CAJA,
 ): string {
   const out: string[] = [`¡Hola ${nombreBodega}! Quiero hacer el siguiente pedido:`]
 
   if (porVino.length > 0) {
     out.push('', '🍷 CAJAS POR VINO')
     for (const l of porVino) {
-      out.push(`- ${nombreCompleto(l.vino)} — ${plural(l.cajas, 'caja')} x${BOX_SIZE} — ${formatoPrecio(subtotalVino(l, descuento))}`)
+      out.push(`- ${nombreCompleto(l.vino)} — ${plural(l.cajas, 'caja')} x${BOX_SIZE} — ${formatoPrecio(subtotalVino(l, precio))}`)
     }
   }
 
   if (mixtas.length > 0) {
     out.push('', '📦 CAJAS MIXTAS')
     mixtas.forEach((m, i) => {
-      out.push(`- Caja mixta ${i + 1}: ${composicion(m.items)} — ${formatoPrecio(subtotalMixta(m.items, descuento))}`)
+      out.push(`- Caja mixta ${i + 1}: ${composicion(m.items)} — ${formatoPrecio(precio)}`)
     })
   }
 
-  const t = totales(porVino, mixtas, descuento)
-  out.push('', `Total: ${t.botellas} botellas (${plural(t.cajas, 'caja')})`, `TOTAL: ${formatoPrecio(t.total)}`)
-  if (descuento > 0) out.push(`(Incluye ${descuento}% de descuento por caja)`)
+  const t = totales(porVino, mixtas, precio)
+  out.push('', `Total: ${t.botellas} botellas (${plural(t.cajas, 'caja')})`, `TOTAL: ${formatoPrecio(t.total)} (envío incluido)`)
 
   const extras = [
     ['Nombre', datos.nombre],

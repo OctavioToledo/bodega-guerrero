@@ -8,9 +8,10 @@ export interface Vino {
   anada: number | null
   /** En mililitros */
   volumen: number
-  /** Precio por botella, en pesos */
-  precio: number
+  /** Resumen corto para la tarjeta (30–50 palabras) */
   descripcion: string
+  /** Nota de cata completa, se muestra desplegable en la tarjeta. Opcional. */
+  cata?: { vista: string; nariz: string; boca: string }
   /** Ruta dentro de `public/` (ej. "/fotos/malbec-reserva.jpg"). `null` muestra una botella ilustrada. */
   foto: string | null
   destacado: boolean

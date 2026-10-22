@@ -13,7 +13,7 @@ export function Hero() {
         fetchPriority="high"
         className="absolute inset-0 -z-10 size-full object-cover"
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-negro/70 via-negro/55 to-negro" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-negro/50 via-negro/25 to-negro/90" aria-hidden />
 
       <div className="mx-auto w-full max-w-5xl px-4 pt-24 pb-20 text-center md:px-8">
         <p className="aparecer etiqueta text-dorado">{hero.etiqueta}</p>

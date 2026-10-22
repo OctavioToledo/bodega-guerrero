@@ -4,58 +4,55 @@
  */
 
 /** Número de WhatsApp que recibe los pedidos: formato internacional, sin "+" ni espacios (54 9 + característica sin 0 + número sin 15). */
-export const WHATSAPP_NUMBER = '5492634408957'
+export const WHATSAPP_NUMBER = '5492634409143'
 
 /** Botellas por caja. El pedido siempre es múltiplo de este número. */
 export const BOX_SIZE: number = 6
 
 /** De a cuántas botellas se elige cada vino dentro de una caja mixta. Tiene que dividir a BOX_SIZE (1, 2, 3 o 6). */
-export const MIX_STEP: number = 3
+export const MIX_STEP: number = 1
 
-/** Descuento por caja, en porcentaje (0 = sin descuento). Se aplica a todas las cajas, por vino y mixtas. */
-export const BOX_DISCOUNT: number = 0
+/** Precio de cualquier caja (de un mismo vino o mixta), en pesos, con envío incluido. */
+export const PRECIO_CAJA: number = 55000
 
 export const BODEGA = {
   nombre: 'Bodega Guerrero',
   /** Cómo se muestra el WhatsApp en el sitio */
-  whatsappVisible: '263 440-8957',
-  direccion: 'Ruta Provincial 15, km 29',
-  localidad: 'Luján de Cuyo',
+  whatsappVisible: '263 440-9143',
+  /** Quién atiende las consultas y los pedidos */
+  contacto: 'Luciana',
+  localidad: 'Medrano, Junín',
   provincia: 'Mendoza',
-  /** Coordenadas del mapa (en Google Maps: clic derecho sobre el lugar → copiar las coordenadas) */
-  coordenadas: { lat: -33.0398, lng: -68.8784 },
-  horarios: ['Lunes a viernes, de 9 a 18 h', 'Sábados, de 10 a 14 h'],
-  email: 'contacto@bodegaguerrero.com.ar',
+  horarios: ['Lunes a viernes, de 9 a 18 h', 'Sábados, de 10 a 16 h'],
+  envio: 'A todo el país, sin cargo',
+  pago: 'Transferencia bancaria',
+  email: 'aaguerrero00@gmail.com',
   /** Usuarios, sin @ ni URL. Dejar en '' para ocultar la red. */
-  instagram: 'bodegaguerrero',
-  facebook: 'bodegaguerrero',
+  instagram: 'bodega.guerrero',
+  facebook: '',
   /** Crédito discreto en el footer. Dejar nombre en '' para ocultarlo. */
   desarrollador: { nombre: 'Octavio Toledo', url: '' },
 }
 
-/** Textos del sitio. Son placeholders genéricos: reemplazarlos por los de la bodega. */
+/** Textos del sitio. */
 export const TEXTOS = {
   hero: {
-    etiqueta: 'Luján de Cuyo · Mendoza',
-    titulo: 'Vinos con historia, hechos en Mendoza',
-    bajada: 'Elaboramos vinos de pequeña escala, al pie de la cordillera, con el mismo cuidado de siempre. Elegí los tuyos y te los acercamos.',
+    etiqueta: 'Medrano · Junín · Mendoza',
+    titulo: 'Vinos dulces naturales, hechos en familia',
+    bajada: 'Bodega familiar especializada en vinos dulces naturales. Armá tu caja de 6 como quieras y te la llevamos sin cargo a todo el país.',
   },
   bodega: {
-    titulo: 'Una familia, una tierra, un oficio',
+    titulo: 'Cinco generaciones, una misma pasión',
     parrafos: [
-      'Bodega Guerrero nació a fines de los años ochenta, cuando la familia compró unas pocas hectáreas de viñedo viejo en Luján de Cuyo y decidió elaborar su propio vino. Desde entonces, cada cosecha se trabaja a mano y en pequeña escala.',
-      'Nuestros viñedos crecen a casi mil metros sobre el nivel del mar, con suelos pedregosos, días soleados y noches frescas que dan uvas de color profundo y buena acidez. En la bodega respetamos esa materia prima: fermentaciones cuidadas, crianza paciente en roble y botellas que salen solo cuando están listas.',
-      'Hacemos vinos para compartir en la mesa, con identidad mendocina y sin apuro. Te invitamos a conocerlos.',
+      'Somos una pequeña bodega familiar ubicada en Medrano, Junín. Nuestra historia en el mundo del vino viene de principios del siglo XX, cuando Lorenzo Guerrero se convirtió en el primer enólogo de la familia.',
+      'Hoy, ya en la quinta generación, elegimos una mirada más moderna y descontracturada del vino, sin perder la calidad, que es uno de nuestros estandartes.',
+      'Trabajamos con una materia prima muy cuidada y una excelente relación calidad/precio, con una misión: recorrer la Argentina dando a conocer nuestros vinos.',
     ],
   },
   fotos: {
     /** Imagen de fondo del hero (horizontal, idealmente 1920×1080) */
-    hero: '/fotos/hero-vinedo.svg',
-    /** 2 o 3 fotos de la sección "La bodega" (horizontales, 4:3) */
-    bodega: [
-      { src: '/fotos/bodega-vinedo.svg', alt: 'Hileras del viñedo al pie de la cordillera' },
-      { src: '/fotos/bodega-barricas.svg', alt: 'Barricas de roble en la cava' },
-      { src: '/fotos/bodega-degustacion.svg', alt: 'Copa de vino tinto en la sala de degustación' },
-    ],
+    hero: '/fotos/hero-vinedo.jpg',
+    /** Fotos de la sección "La bodega". La primera va grande (2:1); las siguientes, de a dos (4:3). */
+    bodega: [{ src: '/fotos/vinos-dulces.jpg', alt: 'Ave María, Ladronzuelo y Los Teritos, nuestros vinos dulces naturales, junto a sus copas' }],
   },
 }

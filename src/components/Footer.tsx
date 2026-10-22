@@ -12,7 +12,7 @@ export function Footer() {
   return (
     <footer className="oscuro bg-negro text-crema">
       <div className="mx-auto flex max-w-7xl flex-col items-center px-4 py-16 text-center md:px-8">
-        {/* Placeholder de texto hasta tener el logo definitivo */}
+        <img src="/logo-hoja.png" alt="" width={223} height={240} loading="lazy" className="mb-5 h-16 w-auto" />
         <p className="font-serif text-2xl font-semibold tracking-[0.22em] uppercase md:text-3xl">{BODEGA.nombre}</p>
         <p className="etiqueta mt-3 text-[11px] text-dorado">
           {BODEGA.localidad} · {BODEGA.provincia}

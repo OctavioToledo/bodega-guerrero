@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { useCarrito } from '../carrito/Carrito'
-import { BODEGA, BOX_DISCOUNT, BOX_SIZE } from '../config'
+import { BODEGA, BOX_SIZE, PRECIO_CAJA } from '../config'
 import { formatoPrecio, plural } from '../lib/formato'
-import { armarMensaje, composicion, subtotalMixta, subtotalVino, type DatosCliente } from '../lib/pedido'
+import { armarMensaje, composicion, subtotalVino, type DatosCliente } from '../lib/pedido'
 import { linkWhatsApp } from '../lib/whatsapp'
 import { IconoCerrar, IconoMas, IconoMenos, IconoTacho, IconoWhatsApp } from './Iconos'
 
@@ -231,7 +231,7 @@ export function DrawerPedido() {
                             <div className="min-w-0">
                               <p className="font-serif text-xl leading-tight">Caja mixta {i + 1}</p>
                               <p className="mt-1 text-sm text-texto/75">{composicion(m.items)}</p>
-                              <p className="mt-2 font-semibold">{formatoPrecio(subtotalMixta(m.items))}</p>
+                              <p className="mt-2 font-semibold">{formatoPrecio(PRECIO_CAJA)}</p>
                             </div>
                             <button type="button" onClick={() => carrito.eliminarMixta(m.id)} className="boton-icono text-texto/70 hover:bg-bordo hover:text-blanco" aria-label={`Eliminar caja mixta ${i + 1}`}>
                               <IconoTacho />
@@ -255,9 +255,9 @@ export function DrawerPedido() {
                       <dt className="etiqueta text-bordo">Total</dt>
                       <dd className="font-serif text-4xl font-semibold text-bordo">{formatoPrecio(total)}</dd>
                     </div>
-                    {BOX_DISCOUNT > 0 && <p className="mt-1 text-right text-sm text-texto/70">Incluye {BOX_DISCOUNT}% de descuento por caja</p>}
+                    <p className="mt-1 text-right text-sm text-texto/70">Envío incluido a todo el país</p>
                   </dl>
-                  <p className="mt-3 text-sm text-texto/70">El pago y la entrega los coordinamos por WhatsApp.</p>
+                  <p className="mt-3 text-sm text-texto/70">El pago ({BODEGA.pago.toLowerCase()}) y la entrega los coordinamos por WhatsApp.</p>
                 </>
               )}
 
@@ -266,14 +266,14 @@ export function DrawerPedido() {
                   <Campo id="nombre" etiqueta="Nombre">
                     <input id="nombre" type="text" autoComplete="name" value={datos.nombre} onChange={(e) => cambiar('nombre', e.target.value)} className="campo" />
                   </Campo>
-                  <Campo id="zona" etiqueta="Localidad o zona de entrega">
+                  <Campo id="zona" etiqueta="Localidad y provincia de entrega">
                     <input
                       id="zona"
                       type="text"
                       autoComplete="address-level2"
                       value={datos.zona}
                       onChange={(e) => cambiar('zona', e.target.value)}
-                      placeholder="Ej. Godoy Cruz, Mendoza"
+                      placeholder="Ej. Rosario, Santa Fe"
                       className="campo"
                     />
                   </Campo>

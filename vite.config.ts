@@ -12,7 +12,6 @@ function seoBodega(sitio: string): Plugin {
   return {
     name: 'bodega-seo',
     transformIndexHtml(html) {
-      const { lat, lng } = BODEGA.coordenadas
       const datos = {
         '@context': 'https://schema.org',
         '@type': 'Winery',
@@ -22,13 +21,10 @@ function seoBodega(sitio: string): Plugin {
         email: BODEGA.email,
         address: {
           '@type': 'PostalAddress',
-          streetAddress: BODEGA.direccion,
           addressLocality: BODEGA.localidad,
           addressRegion: BODEGA.provincia,
           addressCountry: 'AR',
         },
-        geo: { '@type': 'GeoCoordinates', latitude: lat, longitude: lng },
-        hasMap: `https://www.google.com/maps?q=${lat},${lng}`,
         sameAs: [
           BODEGA.instagram && `https://www.instagram.com/${BODEGA.instagram}/`,
           BODEGA.facebook && `https://www.facebook.com/${BODEGA.facebook}`,

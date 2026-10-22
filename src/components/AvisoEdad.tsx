@@ -39,6 +39,7 @@ export function AvisoEdad({ onConfirmar }: { onConfirmar: () => void }) {
   return (
     <div className="oscuro fixed inset-0 z-[60] grid place-items-center bg-negro/90 p-4 backdrop-blur-md">
       <div role="dialog" aria-modal="true" aria-labelledby="edad-titulo" aria-describedby="edad-texto" className="fundido w-full max-w-md border border-dorado/40 bg-negro px-6 py-10 text-center text-crema md:px-10">
+        <img src="/logo-hoja.png" alt="" width={223} height={240} className="mx-auto mb-4 h-14 w-auto" />
         <p className="font-serif text-lg font-semibold tracking-[0.22em] uppercase">{BODEGA.nombre}</p>
         <Ornamento className="mt-5" />
         {rechazado ? (

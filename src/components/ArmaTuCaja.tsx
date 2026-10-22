@@ -1,8 +1,8 @@
 import { useCarrito } from '../carrito/Carrito'
-import { BOX_DISCOUNT, BOX_SIZE, MIX_STEP } from '../config'
+import { BOX_SIZE, MIX_STEP, PRECIO_CAJA } from '../config'
 import { tipoDe, vinos } from '../lib/datos'
 import { formatoPrecio, plural } from '../lib/formato'
-import { subtotalMixta, sugerencias } from '../lib/pedido'
+import { sugerencias } from '../lib/pedido'
 import { SiluetaBotella } from './FotoVino'
 import { Encabezado } from './Encabezado'
 import { IconoMas, IconoMenos } from './Iconos'
@@ -10,7 +10,7 @@ import { Revelar } from './Revelar'
 
 const COLOR_TIPO = { tinto: 'bg-vino-tinto', blanco: 'bg-vino-blanco', rosado: 'bg-vino-rosado' } as const
 
-const deA = MIX_STEP === 1 ? 'de a una botella' : `de a ${MIX_STEP} botellas`
+const comoElegir = MIX_STEP === 1 ? 'elegí las botellas que quieras, de los vinos que quieras' : `elegí de a ${MIX_STEP} botellas de cada vino`
 
 export function ArmaTuCaja() {
   const { armado, botellasArmado, botellasEnArmado, sumarAlArmado, restarDelArmado, descartarArmado, confirmarArmado, mixtas, avisar } = useCarrito()
@@ -38,7 +38,7 @@ export function ArmaTuCaja() {
           id="arma-titulo"
           etiqueta="Caja mixta"
           titulo="Armá tu caja"
-          bajada={`Combiná vinos distintos en una caja de ${BOX_SIZE} botellas: elegí ${deA} de cada uno. Podés armar todas las cajas que quieras.`}
+          bajada={`Combiná vinos distintos en una caja de ${BOX_SIZE} botellas: ${comoElegir}. Cualquier combinación sale ${formatoPrecio(PRECIO_CAJA)}, con envío incluido.`}
         />
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_26rem] lg:items-start lg:gap-14">
@@ -55,7 +55,7 @@ export function ArmaTuCaja() {
                       {v.anada && <span className="text-crema/60"> {v.anada}</span>}
                     </p>
                     <p className="mt-0.5 text-sm text-crema/65">
-                      {v.linea} · <span className="text-dorado">{formatoPrecio(v.precio)}</span> c/u
+                      {v.linea} · {v.varietal}
                     </p>
                   </div>
                   {enCaja === 0 ? (
@@ -142,7 +142,7 @@ export function ArmaTuCaja() {
 
             {sugeridos.length > 0 && (
               <div className="mt-6 border-t border-crema/10 pt-5">
-                <p className="etiqueta text-[11px] text-dorado">Completá con x{MIX_STEP} de…</p>
+                <p className="etiqueta text-[11px] text-dorado">{MIX_STEP === 1 ? 'Sumá una de…' : `Completá con x${MIX_STEP} de…`}</p>
                 <ul className="mt-3 flex flex-col gap-2">
                   {sugeridos.map((v) => (
                     <li key={v.id}>
@@ -155,7 +155,7 @@ export function ArmaTuCaja() {
                           <span className={`size-2 rotate-45 ${COLOR_TIPO[tipoDe(v)]}`} aria-hidden />
                           {v.nombre}
                         </span>
-                        <span className="shrink-0 text-sm text-dorado">+{formatoPrecio(v.precio * MIX_STEP)}</span>
+                        <span className="shrink-0 text-sm text-dorado">+{MIX_STEP}</span>
                       </button>
                     </li>
                   ))}
@@ -165,9 +165,10 @@ export function ArmaTuCaja() {
 
             <div className="mt-6 flex items-baseline justify-between border-t border-crema/10 pt-5">
               <span className="text-crema/80">
-                Subtotal{BOX_DISCOUNT > 0 && ` (${BOX_DISCOUNT}% off)`}
+                Precio de la caja
+                <span className="block text-xs text-crema/60">Envío incluido</span>
               </span>
-              <span className="font-serif text-3xl text-dorado">{formatoPrecio(subtotalMixta(armado))}</span>
+              <span className="font-serif text-3xl text-dorado">{formatoPrecio(PRECIO_CAJA)}</span>
             </div>
 
             <button type="button" onClick={confirmar} disabled={!completa} className="boton boton-primario mt-6 w-full" aria-describedby="ayuda-caja">

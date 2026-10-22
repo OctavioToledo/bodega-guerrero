@@ -26,8 +26,8 @@ export function Header() {
   return (
     <header className="oscuro fixed inset-x-0 top-0 z-30 border-b border-dorado/25 bg-negro/95 text-crema backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:h-[72px] md:px-8">
-        {/* Placeholder de texto hasta tener el logo definitivo */}
-        <a href="#inicio" onClick={cerrarMenu} className="font-serif text-xl leading-none font-semibold tracking-[0.2em] uppercase md:text-2xl">
+        <a href="#inicio" onClick={cerrarMenu} className="flex items-center gap-2.5 font-serif text-xl leading-none font-semibold tracking-[0.2em] uppercase md:text-2xl">
+          <img src="/logo-hoja.png" alt="" width={223} height={240} className="h-8 w-auto md:h-9" />
           {BODEGA.nombre}
         </a>
 

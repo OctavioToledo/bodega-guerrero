@@ -1,5 +1,5 @@
 import { BODEGA, TEXTOS } from '../config'
-import { IconoPin } from './Iconos'
+import { IconoCaja, IconoPin } from './Iconos'
 import { Revelar } from './Revelar'
 
 export function Bodega() {
@@ -20,17 +20,28 @@ export function Bodega() {
               <p key={p}>{p}</p>
             ))}
           </div>
-          <p className="mt-8 flex items-start gap-3 border-t border-azul/15 pt-6">
-            <IconoPin className="mt-0.5 shrink-0 text-azul" />
-            <span>
-              <span className="font-semibold">{BODEGA.direccion}</span>
-              <br />
-              {BODEGA.localidad}, {BODEGA.provincia} ·{' '}
-              <a href="#contacto" className="text-bordo underline decoration-dorado underline-offset-4 hover:decoration-bordo">
-                Cómo llegar
-              </a>
-            </span>
-          </p>
+          <ul className="mt-8 flex flex-col gap-3 border-t border-azul/15 pt-6">
+            <li className="flex items-start gap-3">
+              <IconoPin className="mt-0.5 shrink-0 text-azul" />
+              <span>
+                <span className="font-semibold">
+                  {BODEGA.localidad}, {BODEGA.provincia}
+                </span>
+                <br />
+                Vendemos online, sin local a la calle.
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <IconoCaja className="mt-0.5 shrink-0 text-azul" />
+              <span>
+                <span className="font-semibold">Envíos {BODEGA.envio.toLowerCase()}</span>
+                <br />
+                <a href="#vinos" className="text-bordo underline decoration-dorado underline-offset-4 hover:decoration-bordo">
+                  Ver los vinos
+                </a>
+              </span>
+            </li>
+          </ul>
         </Revelar>
 
         <Revelar retraso={150} className="grid grid-cols-2 gap-3 md:gap-4">
@@ -39,10 +50,10 @@ export function Bodega() {
               src={principal.src}
               alt={principal.alt}
               width={1200}
-              height={900}
+              height={600}
               loading="lazy"
               decoding="async"
-              className="col-span-2 aspect-[4/3] w-full object-cover"
+              className="col-span-2 aspect-[2/1] w-full object-cover"
             />
           )}
           {resto.map((f) => (

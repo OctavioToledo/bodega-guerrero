@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { BOX_DISCOUNT, BOX_SIZE } from '../config'
+import { BOX_SIZE, PRECIO_CAJA } from '../config'
 import { TIPOS, lineas, tipoDe, vinos } from '../lib/datos'
 import { formatoPrecio } from '../lib/formato'
-import { precioCaja } from '../lib/pedido'
 import type { TipoVino, Vino } from '../lib/tipos'
 import { ControlCajas } from './ControlCajas'
 import { Encabezado } from './Encabezado'
@@ -22,21 +21,36 @@ function TarjetaVino({ vino }: { vino: Vino }) {
         <p className="etiqueta text-[11px] text-bordo">{vino.linea}</p>
         <h3 className="mt-2 text-[1.75rem] leading-tight">{vino.nombre}</h3>
         <p className="mt-1 text-sm text-texto/70">{[vino.varietal, vino.anada, `${vino.volumen} ml`].filter(Boolean).join(' · ')}</p>
-        <p className="mt-4 mb-6 text-[0.9375rem] leading-relaxed text-texto/85">{vino.descripcion}</p>
+        <p className="mt-4 text-[0.9375rem] leading-relaxed text-texto/85">{vino.descripcion}</p>
+        <div className="mb-6">
+          {vino.cata && (
+            <details className="group/cata mt-3 text-sm">
+              <summary className="inline-flex min-h-11 items-center gap-2 font-semibold text-bordo underline decoration-dorado underline-offset-4 marker:content-none hover:decoration-bordo">
+                <span className="group-open/cata:hidden">Ver nota de cata</span>
+                <span className="hidden group-open/cata:inline">Ocultar nota de cata</span>
+              </summary>
+              <dl className="mt-2 flex flex-col gap-2.5 leading-relaxed text-texto/85">
+                {(['vista', 'nariz', 'boca'] as const).map((k) => (
+                  <div key={k}>
+                    <dt className="etiqueta text-[10px] text-bordo">{k}</dt>
+                    <dd className="mt-0.5">{vino.cata![k]}</dd>
+                  </div>
+                ))}
+              </dl>
+            </details>
+          )}
+        </div>
 
-        <dl className="mt-auto mb-5 grid grid-cols-2 gap-3 border-t border-crema-oscuro pt-5">
-          <div>
-            <dt className="etiqueta text-[10px] text-texto/65">Botella</dt>
-            <dd className="mt-1 text-lg">{formatoPrecio(vino.precio)}</dd>
-          </div>
-          <div className="text-right">
-            <dt className="etiqueta text-[10px] text-texto/65">
-              Caja x{BOX_SIZE}
-              {BOX_DISCOUNT > 0 && ` · ${BOX_DISCOUNT}% off`}
-            </dt>
-            <dd className="mt-1 font-serif text-2xl leading-none font-semibold text-bordo">{formatoPrecio(precioCaja(vino))}</dd>
-          </div>
-        </dl>
+        <div className="mt-auto mb-5 flex items-end justify-between gap-3 border-t border-crema-oscuro pt-5">
+          <dl>
+            <dt className="etiqueta text-[10px] text-texto/65">Caja x{BOX_SIZE}</dt>
+            <dd className="mt-1 font-serif text-2xl leading-none font-semibold text-bordo">{formatoPrecio(PRECIO_CAJA)}</dd>
+          </dl>
+          <p className="text-right text-xs leading-snug text-texto/70">
+            Envío incluido
+            <br />a todo el país
+          </p>
+        </div>
         <ControlCajas vino={vino} />
       </div>
     </li>
@@ -57,7 +71,7 @@ export function Catalogo() {
           id="vinos-titulo"
           etiqueta="Nuestros vinos"
           titulo="El catálogo"
-          bajada={`Vendemos por caja de ${BOX_SIZE} botellas del mismo vino. Si querés combinar, armá tu caja mixta más abajo.`}
+          bajada={`Todas las cajas de ${BOX_SIZE} botellas salen ${formatoPrecio(PRECIO_CAJA)}, con envío incluido a todo el país. Llevá ${BOX_SIZE} del mismo vino o combinalos en tu caja mixta.`}
         />
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-2" role="group" aria-label="Filtrar vinos">

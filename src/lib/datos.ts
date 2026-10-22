@@ -9,16 +9,14 @@ export function buscarVino(id: string): Vino | undefined {
   return porId.get(id)
 }
 
-const precioMinimo = (linea: string) => Math.min(...vinos.filter((v) => v.linea === linea).map((v) => v.precio))
-
-/** Líneas de la gama de entrada a la más alta (según el vino más económico de cada una). */
-export const lineas = [...new Set(vinos.map((v) => v.linea))].sort((a, b) => precioMinimo(a) - precioMinimo(b))
+/** Líneas en el orden en que aparecen en el catálogo. */
+export const lineas = [...new Set(vinos.map((v) => v.linea))]
 
 /** Tinto, blanco o rosado, deducido del varietal (no hace falta cargarlo en la planilla). */
 export function tipoDe(vino: Pick<Vino, 'varietal' | 'nombre'>): TipoVino {
   const texto = `${vino.varietal} ${vino.nombre}`.toLowerCase()
   if (/rosado|ros[eé]\b/.test(texto)) return 'rosado'
-  if (/chardonnay|torront[eé]s|sauvignon blanc|viognier|semill[oó]n|chenin|riesling|pinot gris|blanco/.test(texto)) return 'blanco'
+  if (/chardonnay|torront[eé]s|sauvignon blanc|viognier|semill[oó]n|chenin|riesling|pinot gris|blanc[oa]/.test(texto)) return 'blanco'
   return 'tinto'
 }
 

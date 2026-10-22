@@ -40,7 +40,7 @@ export function FotoVino({ vino }: { vino: Vino }) {
           height={800}
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-contain transition-transform duration-700 ease-(--ease-suave) group-hover:scale-[1.03]"
+          className="h-full w-full object-contain mix-blend-multiply transition-transform duration-700 ease-(--ease-suave) group-hover:scale-[1.03]"
         />
       ) : (
         <SiluetaBotella tipo={tipoDe(vino)} className="h-[85%]" />

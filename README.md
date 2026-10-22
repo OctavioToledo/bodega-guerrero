@@ -37,8 +37,7 @@ Todo lo editable vive en **dos archivos**. No hace falta tocar componentes.
 |---|---|
 | Número de WhatsApp que recibe los pedidos | `WHATSAPP_NUMBER`. Formato internacional sin `+` ni espacios: `549` + característica sin 0 + número sin 15. Ej.: (261) 15 555-1234 → `5492615551234`. |
 | Número como se muestra en el sitio | `BODEGA.whatsappVisible` |
-| Dirección, horarios, email, Instagram, Facebook | `BODEGA` (dejar una red en `''` para ocultarla) |
-| Ubicación del mapa | `BODEGA.coordenadas` (en Google Maps: clic derecho sobre la bodega → copiar las coordenadas) |
+| Localidad, horarios, envío, forma de pago, persona de contacto, email, Instagram, Facebook | `BODEGA` (dejar una red en `''` para ocultarla) |
 | Título y bajada del hero, texto institucional | `TEXTOS.hero` y `TEXTOS.bodega` |
 | Fotos del hero y de "La bodega" | `TEXTOS.fotos` |
 | Crédito del desarrollador en el footer | `BODEGA.desarrollador` |
@@ -47,13 +46,13 @@ Todo lo editable vive en **dos archivos**. No hace falta tocar componentes.
 
 ```ts
 export const BOX_SIZE: number = 6      // botellas por caja
-export const MIX_STEP: number = 3      // de a cuántas botellas se elige cada vino en la caja mixta
-export const BOX_DISCOUNT: number = 0  // descuento por caja, en %
+export const MIX_STEP: number = 1      // de a cuántas botellas se elige cada vino en la caja mixta
+export const PRECIO_CAJA: number = 55000  // precio de cualquier caja, con envío incluido
 ```
 
 - **`BOX_SIZE`**: los vinos se venden siempre en cajas de este tamaño y el pedido total siempre es múltiplo de este número.
-- **`MIX_STEP`**: con `3`, la caja mixta se arma con 3 + 3. Con `2` se puede hacer 2 + 2 + 2, y con `1`, cualquier combinación. Tiene que dividir a `BOX_SIZE` (con 6: 1, 2, 3 o 6).
-- **`BOX_DISCOUNT`**: con `10`, todas las cajas (por vino y mixtas) salen 10 % menos. El sitio muestra el descuento en las tarjetas, la caja mixta, el resumen y el mensaje de WhatsApp.
+- **`MIX_STEP`**: con `1` (lo actual), el cliente elige las 6 botellas que quiera, de los vinos que quiera. Con `3`, la caja mixta se arma con 3 + 3, y con `2`, con 2 + 2 + 2. Tiene que dividir a `BOX_SIZE` (con 6: 1, 2, 3 o 6).
+- **`PRECIO_CAJA`**: todas las cajas valen lo mismo, sean de un mismo vino o mixtas, con envío incluido a todo el país. Para cambiar el precio se edita solo este número (sin puntos ni `$`).
 
 Si se cambian estas reglas, los pedidos que los clientes tengan guardados en el navegador y ya no cumplan las reglas nuevas se descartan solos.
 
@@ -63,36 +62,36 @@ Un bloque por vino, con las mismas columnas que la planilla de carga:
 
 ```json
 {
-  "id": "malbec-reserva",
-  "nombre": "Malbec Reserva",
-  "linea": "Reserva",
+  "id": "los-teritos-malbec",
+  "nombre": "Los Teritos Malbec",
+  "linea": "Seco",
   "varietal": "Malbec",
-  "anada": 2022,
+  "anada": null,
   "volumen": 750,
-  "precio": 17800,
-  "descripcion": "Rojo intenso con reflejos violáceos…",
-  "foto": "/fotos/malbec-reserva.jpg",
-  "destacado": true,
+  "descripcion": "Rojo violáceo intenso y brillante…",
+  "cata": { "vista": "…", "nariz": "…", "boca": "…" },
+  "foto": "/fotos/los-teritos-malbec.jpg",
+  "destacado": false,
   "disponible": true
 }
 ```
 
-- **Cambiar un precio**: editar `precio` (por botella, sin puntos ni `$`). La caja se calcula sola.
 - **Agregar un vino**: copiar un bloque, cambiar el `id` (único, en minúsculas y con guiones) y los datos. Ojo con las comas entre bloques.
 - **Quitar un vino temporalmente**: `"disponible": false`. Para sacarlo del todo, borrar el bloque.
 - **`anada`**: `null` si el vino no tiene añada.
+- **`cata`**: nota de cata (vista, nariz, boca) que se despliega en la tarjeta. Se puede omitir.
 - **`destacado`**: muestra la etiqueta "Destacado" y lo prioriza en las sugerencias de la caja mixta.
-- Los filtros por línea se arman solos con los valores de `linea`. Tinto, blanco o rosado se deduce del varietal.
+- Los filtros se arman solos con los valores de `linea` (hoy: Dulce natural, Seco, Sin alcohol). Tinto, blanco o rosado se deduce del varietal.
 
 ## Fotos
 
-Van en `public/fotos/`. Las que hay ahora son ilustraciones provisorias (`.svg`).
+Van en `public/fotos/`. Las botellas son las fotos de la bodega; el hero es una ilustración de un viñedo con la hoja del logo (`hero-vinedo.jpg`).
 
 - **Botellas**: vertical, botella completa, fondo claro y liso, idealmente 600×800 px, en `.jpg` o `.webp`. Copiar el archivo a `public/fotos/` y poner el nombre en el campo `foto` del vino (ej. `"/fotos/malbec-reserva.jpg"`). Con `"foto": null` se muestra una botella ilustrada.
 - **Hero**: horizontal, 1920×1080 aprox. Cambiar `TEXTOS.fotos.hero`.
-- **La bodega**: 2 o 3 fotos horizontales 4:3 (1200×900). Cambiar `TEXTOS.fotos.bodega`, cada una con su texto alternativo (`alt`).
-- **Vista previa al compartir** (`public/og.jpg`, 1200×630), **favicon** (`public/favicon.svg`) y **ícono de iPhone** (`public/apple-touch-icon.png`, 180×180): reemplazar cuando esté el logo.
-- **Logo**: hoy es el nombre en texto, en `src/components/Header.tsx`, `Footer.tsx` y `AvisoEdad.tsx`.
+- **La bodega**: la primera foto va grande en 2:1 (1200×600); si se agregan más, van de a dos en 4:3. Cambiar `TEXTOS.fotos.bodega`, cada una con su texto alternativo (`alt`).
+- **Vista previa al compartir** (`public/og.jpg`, 1200×630), **favicon** (`public/favicon.png`) e **ícono de iPhone** (`public/apple-touch-icon.png`, 180×180): generados a partir del logo de la bodega.
+- **Logo**: la hoja dorada (`public/logo-hoja.png`, con transparencia) junto al nombre en texto, en `src/components/Header.tsx`, `Footer.tsx` y `AvisoEdad.tsx`.
 
 Para el título y la descripción de la vista previa (WhatsApp, Instagram, Google), editar las etiquetas `<title>`, `description`, `og:*` y `twitter:*` de `index.html`.
 

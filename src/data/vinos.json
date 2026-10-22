@@ -1,105 +1,120 @@
 [
   {
-    "id": "malbec-reserva",
-    "nombre": "Malbec Reserva",
-    "linea": "Reserva",
+    "id": "ave-maria",
+    "nombre": "Ave María",
+    "linea": "Dulce natural",
+    "varietal": "Blanco dulce natural",
+    "anada": null,
+    "volumen": 750,
+    "descripcion": "Blanco dulce natural, fresco y muy aromático. Durazno blanco, pera y manzana verde, con toques de ananá, melón y flores de jazmín y azahar. En boca es dulce y liviano, con una acidez que lo equilibra y un final a fruta madura y miel.",
+    "cata": {
+      "vista": "Color amarillo pálido con reflejos verdosos, brillante y limpio, típico de un vino joven y fresco.",
+      "nariz": "Aromas intensos y expresivos. Predominan las notas frutales como durazno blanco, pera y manzana verde, junto con matices de frutas tropicales (ananá, melón). Se perciben también florales sutiles (jazmín, azahar) que refuerzan su carácter aromático.",
+      "boca": "Entrada dulce y fresca, con acidez que equilibra bien el azúcar natural. Sensación ligera y refrescante, con textura suave y aterciopelada. Final medio, dejando recuerdos a fruta madura y miel delicada."
+    },
+    "foto": "/fotos/ave-maria.jpg",
+    "destacado": true,
+    "disponible": true
+  },
+  {
+    "id": "ladronzuelo",
+    "nombre": "Ladronzuelo",
+    "linea": "Dulce natural",
+    "varietal": "Rosado dulce natural",
+    "anada": null,
+    "volumen": 750,
+    "descripcion": "Rosado dulce natural, brillante y con reflejos salmón. Frutilla fresca, cereza y frambuesa, con un toque de pétalos de rosa y frutas tropicales. Entrada dulce y jugosa, textura ligera y un final de frutas rojas maduras.",
+    "cata": {
+      "vista": "Color rosado brillante y cristalino, con reflejos salmón. Su limpidez y vivacidad denotan frescura y juventud.",
+      "nariz": "Muy expresivo y frutal. Aparecen aromas a frutilla fresca, cereza y frambuesa y un ligero matiz floral (pétalos de rosa). También se intuyen tonos tropicales suaves como guayaba o maracuyá.",
+      "boca": "Entrada dulce y jugosa, con buena acidez que equilibra el dulzor natural. Textura ligera y fresca, con un final corto a medio donde dominan las frutas rojas maduras y un retrogusto levemente floral."
+    },
+    "foto": "/fotos/ladronzuelo.jpg",
+    "destacado": true,
+    "disponible": true
+  },
+  {
+    "id": "los-teritos-dulce",
+    "nombre": "Los Teritos",
+    "linea": "Dulce natural",
+    "varietal": "Tinto dulce natural",
+    "anada": null,
+    "volumen": 750,
+    "descripcion": "Tinto dulce natural, rojo rubí con reflejos violáceos. Frutilla madura, cereza, ciruela y frambuesa, con un dejo de vainilla y canela típico del Tempranillo joven. Dulce y amable, de taninos muy suaves y muy fácil de tomar.",
+    "cata": {
+      "vista": "Color rojo rubí intenso con reflejos violáceos, brillante y atractivo, que denota juventud y frescura.",
+      "nariz": "Aromáticamente muy frutal. Predominan notas de frutilla madura, cereza, ciruela fresca y un toque de frambuesa, y un dejo especiado muy sutil (vainilla y canela), típico del Tempranillo joven.",
+      "boca": "Entrada dulce y amable, con taninos muy suaves y redondeados. La acidez equilibra el dulzor, logrando un paladar fresco y fácil de beber. El final es medio, con persistencia de frutas rojas dulces y un dejo confitado."
+    },
+    "foto": "/fotos/los-teritos-dulce.jpg",
+    "destacado": true,
+    "disponible": true
+  },
+  {
+    "id": "los-teritos-malbec",
+    "nombre": "Los Teritos Malbec",
+    "linea": "Seco",
     "varietal": "Malbec",
-    "anada": 2022,
+    "anada": null,
     "volumen": 750,
-    "precio": 17800,
-    "descripcion": "Rojo intenso con reflejos violáceos. En nariz aparecen ciruelas maduras, violetas y un toque de vainilla de su paso por roble. En boca es amplio, de taninos redondos y final prolongado. Ideal con carnes rojas y quesos estacionados.",
-    "foto": "/fotos/malbec-reserva.svg",
-    "destacado": true,
-    "disponible": true
-  },
-  {
-    "id": "cabernet-sauvignon-reserva",
-    "nombre": "Cabernet Sauvignon Reserva",
-    "linea": "Reserva",
-    "varietal": "Cabernet Sauvignon",
-    "anada": 2021,
-    "volumen": 750,
-    "precio": 17800,
-    "descripcion": "Color rubí profundo. Aromas a frutos negros, pimiento asado y especias dulces. Tiene buena estructura, taninos firmes y una frescura que lo hace muy versátil. Acompaña muy bien cordero, carnes a la parrilla y pastas con salsas intensas.",
-    "foto": "/fotos/cabernet-sauvignon-reserva.svg",
+    "descripcion": "Rojo violáceo intenso y brillante. Ciruela madura, cereza negra y mora, con notas florales de violetas. Taninos suaves y redondos, cuerpo medio a pleno y una fruta jugosa equilibrada por buena acidez. Final largo y elegante.",
+    "cata": {
+      "vista": "Rojo violáceo intenso y brillante. Reflejos púrpuras que hablan de frescura y vivacidad.",
+      "nariz": "Aromas nítidos de ciruela madura, cereza negra y mora, acompañados de notas florales de violetas.",
+      "boca": "Entrada amable, con taninos suaves y redondos. Cuerpo medio a pleno, destacando una fruta roja jugosa en equilibrio con una buena acidez que aporta frescura. Final largo, con persistencia frutal y un toque floral que refuerza su elegancia."
+    },
+    "foto": "/fotos/los-teritos-malbec.jpg",
     "destacado": false,
     "disponible": true
   },
   {
-    "id": "cabernet-franc-gran-reserva",
-    "nombre": "Cabernet Franc Gran Reserva",
-    "linea": "Gran Reserva",
+    "id": "los-teritos-cabernet-franc",
+    "nombre": "Los Teritos Cabernet Franc",
+    "linea": "Seco",
     "varietal": "Cabernet Franc",
-    "anada": 2020,
+    "anada": null,
     "volumen": 750,
-    "precio": 31500,
-    "descripcion": "Elaborado con uvas de nuestras parcelas más altas y criado dieciocho meses en barricas francesas. Notas de frutos rojos, hierbas frescas y grafito. Elegante, de textura sedosa y gran persistencia. Para guardar o para una ocasión especial.",
-    "foto": "/fotos/cabernet-franc-gran-reserva.svg",
-    "destacado": true,
-    "disponible": true
-  },
-  {
-    "id": "blend-gran-reserva",
-    "nombre": "Blend Gran Reserva",
-    "linea": "Gran Reserva",
-    "varietal": "Malbec, Cabernet Franc y Petit Verdot",
-    "anada": 2019,
-    "volumen": 750,
-    "precio": 36000,
-    "descripcion": "Nuestro vino ícono: una selección de las mejores barricas de cada cosecha. Complejo y profundo, con capas de fruta negra, tabaco, cacao y especias. Taninos pulidos y un final muy largo. Recomendamos decantarlo una hora antes de servir.",
-    "foto": "/fotos/blend-gran-reserva.svg",
-    "destacado": true,
-    "disponible": true
-  },
-  {
-    "id": "syrah-clasico",
-    "nombre": "Syrah",
-    "linea": "Línea Clásica",
-    "varietal": "Syrah",
-    "anada": 2023,
-    "volumen": 750,
-    "precio": 11200,
-    "descripcion": "Un tinto franco y expresivo, de color violáceo. Se sienten la frambuesa, la pimienta negra y un fondo ahumado suave. Es jugoso, de cuerpo medio y muy fácil de tomar. Va perfecto con pizzas, embutidos y carnes a la parrilla.",
-    "foto": "/fotos/syrah-clasico.svg",
+    "descripcion": "Rojo rubí profundo. Frambuesa, cereza roja y grosella, con el toque herbáceo propio de la cepa: pimiento rojo y hojas frescas. Fresco y jugoso, de taninos finos, cuerpo medio y una ligera nota especiada.",
+    "cata": {
+      "vista": "Rojo rubí profundo con reflejos violáceos.",
+      "nariz": "Aromas frutales intensos, como frambuesa, cereza roja y grosella, acompañados de un toque herbáceo característico de la cepa: pimiento rojo, hojas frescas y un leve matiz floral.",
+      "boca": "Entrada fresca y jugosa, taninos finos y redondos, cuerpo medio y un perfil frutal que se equilibra con una ligera nota especiada y vegetal, propia del Cabernet Franc."
+    },
+    "foto": "/fotos/los-teritos-cabernet-franc.jpg",
     "destacado": false,
     "disponible": true
   },
   {
-    "id": "chardonnay-clasico",
-    "nombre": "Chardonnay",
-    "linea": "Línea Clásica",
-    "varietal": "Chardonnay",
-    "anada": 2024,
+    "id": "lambrusco-maestri",
+    "nombre": "Lambrusco Maestri",
+    "linea": "Seco",
+    "varietal": "Lambrusco Maestri",
+    "anada": null,
     "volumen": 750,
-    "precio": 10400,
-    "descripcion": "Amarillo verdoso brillante. Aromas a ananá, durazno blanco y una nota cítrica. Fresco y equilibrado, con una cremosidad sutil que le aporta una pequeña parte fermentada en roble. Ideal con pescados, pollo y risottos.",
-    "foto": "/fotos/chardonnay-clasico.svg",
+    "descripcion": "Rojo intenso con reflejos violáceos. Frutos rojos maduros, ciruela fresca y un fondo floral de violetas. De cuerpo medio y taninos suaves, con una frescura marcada, sabores a cereza y frutilla y un final jugoso y persistente.",
+    "cata": {
+      "vista": "Color rojo intenso con reflejos violáceos, brillante y limpio, que expresa juventud y vivacidad.",
+      "nariz": "Aromas intensos de frutos rojos maduros, con notas de ciruela fresca y un delicado fondo floral que recuerda a violetas. Se perciben matices especiados sutiles.",
+      "boca": "Entrada amable, de cuerpo medio y taninos suaves, con frescura marcada que equilibra la fruta. Predominan sabores a cereza y frutilla madura, acompañados de un toque especiado y mineral. Final jugoso, armónico y persistente."
+    },
+    "foto": "/fotos/lambrusco-maestri.jpg",
     "destacado": false,
-    "disponible": true
+    "disponible": false
   },
   {
-    "id": "torrontes-clasico",
-    "nombre": "Torrontés",
-    "linea": "Línea Clásica",
-    "varietal": "Torrontés",
-    "anada": 2024,
+    "id": "ave-maria-jugo",
+    "nombre": "Ave María Jugo de Uva",
+    "linea": "Sin alcohol",
+    "varietal": "Jugo de uva blanca natural · 0% alcohol",
+    "anada": null,
     "volumen": 750,
-    "precio": 9600,
-    "descripcion": "El blanco más argentino. Muy aromático, con flores blancas, pomelo y durazno. En boca es seco, ligero y refrescante, con una acidez vibrante. Acompaña muy bien comida especiada, empanadas y quesos frescos, o simplemente una tarde al sol.",
-    "foto": "/fotos/torrontes-clasico.svg",
-    "destacado": false,
-    "disponible": true
-  },
-  {
-    "id": "rosado-clasico",
-    "nombre": "Rosado de Malbec",
-    "linea": "Línea Clásica",
-    "varietal": "Rosado de Malbec",
-    "anada": 2024,
-    "volumen": 750,
-    "precio": 9200,
-    "descripcion": "Color rosa pálido, elaborado con Malbec de cosecha temprana. Notas de frutilla, cereza y pétalos de rosa. Fresco, delicado y con un final levemente frutado. Perfecto como aperitivo, con ensaladas, mariscos o tablas de quesos suaves.",
-    "foto": "/fotos/rosado-clasico.svg",
+    "descripcion": "Jugo de uva natural, sin aditivos, conservantes ni azúcares añadidos. Fresco, con notas florales y toques cítricos, y una acidez que lo hace más liviano y menos empalagoso que los jugos de uva tradicionales.",
+    "cata": {
+      "vista": "Dorado pálido con matices verdosos.",
+      "nariz": "De intensidad ligera, fresco, con matices florales suaves y recuerdos de frutas blancas.",
+      "boca": "Dulce y fresco, con acidez equilibrada que realza su carácter frutal. Presenta una sensación suave y aterciopelada, con paso ligero y buena persistencia."
+    },
+    "foto": "/fotos/ave-maria-jugo.jpg",
     "destacado": false,
     "disponible": true
   }
