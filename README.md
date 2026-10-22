@@ -103,3 +103,19 @@ Para el título y la descripción de la vista previa (WhatsApp, Instagram, Googl
 - El pedido queda guardado en el navegador (`localStorage`): si el cliente cierra y vuelve, lo encuentra igual.
 - "Enviar pedido por WhatsApp" abre `wa.me` con el mensaje redactado. Se deshabilita si el pedido está vacío o si hay una caja mixta sin terminar.
 - El aviso "¿Sos mayor de 18 años?" se recuerda en el navegador después de responder que sí.
+
+## Páginas legales
+
+Hay tres páginas aparte, cada una con su URL, enlazadas desde el footer. No pasan por el aviso de edad.
+
+| Página | URL | Qué es |
+|---|---|---|
+| Términos y condiciones | `/terminos/` | Condiciones de venta: cajas, precios, pago, envíos, arrepentimiento, garantía. |
+| Política de privacidad | `/privacidad/` | Qué datos se usan y cómo ejercer los derechos de la Ley 25.326, con la leyenda obligatoria de la AAIP. |
+| Botón de arrepentimiento | `/arrepentimiento/` | Formulario sin registro. Genera un código de gestión en el momento (`ARR-AAAAMMDD-XXXX`) y arma el mensaje para WhatsApp o email. Lo exige la Disposición 954/2025 y tiene que estar visible desde la página de inicio: está en el footer. |
+
+Los datos del titular se cargan en `LEGAL`, en `src/config.ts`: razón social, CUIT, domicilio, plazo de entrega y Data Fiscal. Mientras estén vacíos, los textos usan el nombre de la bodega y frases generales, así que se puede publicar igual. Al cambiar los textos, actualizar `LEGAL.actualizacion`.
+
+**Data Fiscal (ARCA, Formulario 960/D):** el titular lo genera con clave fiscal, en el servicio "Formulario 960/D – Data Fiscal", opción para sitios web. ARCA da un código HTML con un link y una imagen: copiar el `href` en `LEGAL.dataFiscal.enlace` y el `src` en `LEGAL.dataFiscal.imagen`. Aparece solo en el footer.
+
+**Cookies:** el sitio no usa cookies. Solo guarda el pedido y la confirmación de edad en el navegador (`localStorage`). Las tipografías están alojadas en el propio sitio (paquetes `@fontsource`), así que no se hacen pedidos a servicios de terceros.

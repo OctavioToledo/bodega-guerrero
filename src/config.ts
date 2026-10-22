@@ -34,6 +34,25 @@ export const BODEGA = {
   desarrollador: { nombre: 'Octavio Toledo', url: '' },
 }
 
+/**
+ * Datos para las páginas legales (términos, privacidad, arrepentimiento) y el footer.
+ * Si un dato queda vacío, el sitio lo omite o usa un texto general: se puede publicar antes de tenerlos todos.
+ */
+export const LEGAL = {
+  /** Razón social o nombre y apellido del titular, como figura en ARCA. Vacío: se usa el nombre de la bodega. */
+  titular: '',
+  /** CUIT del titular, con guiones (ej. "20-12345678-9"). */
+  cuit: '',
+  /** Domicilio legal o fiscal. Vacío: se muestra la localidad. */
+  domicilio: '',
+  /** Plazo estimado de entrega, completa la frase "El envío demora …" (ej. "entre 3 y 7 días hábiles, según la localidad"). */
+  plazoEntrega: '',
+  /** Data Fiscal de ARCA (Formulario 960/D): el link y la imagen del código que da ARCA para sitios web. Vacío: no se muestra. */
+  dataFiscal: { enlace: '', imagen: '' },
+  /** Fecha de la última actualización de términos y privacidad */
+  actualizacion: '22 de octubre de 2026',
+}
+
 /** Textos del sitio. */
 export const TEXTOS = {
   hero: {

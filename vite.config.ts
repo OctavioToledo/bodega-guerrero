@@ -11,7 +11,9 @@ import { BODEGA, WHATSAPP_NUMBER } from './src/config.ts'
 function seoBodega(sitio: string): Plugin {
   return {
     name: 'bodega-seo',
-    transformIndexHtml(html) {
+    transformIndexHtml(html, ctx) {
+      // Las páginas legales no llevan los datos estructurados de la bodega
+      if (ctx.path !== '/index.html') return html.replaceAll('__SITE_URL__', sitio)
       const datos = {
         '@context': 'https://schema.org',
         '@type': 'Winery',
@@ -43,6 +45,17 @@ export default defineConfig(({ mode }) => {
   const sitio = (loadEnv(mode, process.cwd()).VITE_SITE_URL || (vercel ? `https://${vercel}` : process.env.CF_PAGES_URL) || '').replace(/\/$/, '')
   return {
     plugins: [react(), tailwindcss(), seoBodega(sitio)],
+    build: {
+      rollupOptions: {
+        // Además del sitio, las páginas legales (cada una con su URL: /terminos/, /privacidad/, /arrepentimiento/)
+        input: {
+          main: 'index.html',
+          terminos: 'terminos/index.html',
+          privacidad: 'privacidad/index.html',
+          arrepentimiento: 'arrepentimiento/index.html',
+        },
+      },
+    },
     test: {
       environment: 'node',
     },

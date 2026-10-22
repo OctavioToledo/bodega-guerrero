@@ -1,4 +1,4 @@
-import { BODEGA } from '../config'
+import { BODEGA, LEGAL } from '../config'
 import { linkWhatsApp } from '../lib/whatsapp'
 import { IconoFacebook, IconoInstagram, IconoWhatsApp } from './Iconos'
 import { Ornamento } from './Ornamento'
@@ -43,9 +43,36 @@ export function Footer() {
 
         <p className="mt-10 max-w-md text-sm leading-relaxed text-crema/75">Beber con moderación. Prohibida su venta a menores de 18 años.</p>
 
+        <nav aria-label="Información legal" className="mt-8 flex flex-col items-center gap-3">
+          {/* Botón de arrepentimiento: visible desde la página de inicio, sin registro (Disposición 954/2025) */}
+          <a href="/arrepentimiento/" className="boton boton-dorado min-h-11 px-5 text-[11px]">
+            Botón de arrepentimiento
+          </a>
+          <ul className="flex flex-wrap justify-center gap-x-5 text-sm text-crema/75">
+            <li>
+              <a href="/terminos/" className="inline-flex min-h-11 items-center underline-offset-4 hover:text-dorado hover:underline">
+                Términos y condiciones
+              </a>
+            </li>
+            <li>
+              <a href="/privacidad/" className="inline-flex min-h-11 items-center underline-offset-4 hover:text-dorado hover:underline">
+                Política de privacidad
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        {LEGAL.dataFiscal.enlace && (
+          <a href={LEGAL.dataFiscal.enlace} target="_F960AFIPInfo" rel="noopener" className="mt-6 inline-block bg-blanco p-1" aria-label="Data Fiscal de ARCA">
+            <img src={LEGAL.dataFiscal.imagen} alt="Data Fiscal" width={60} height={80} loading="lazy" className="h-20 w-auto" />
+          </a>
+        )}
+
         <div className="mt-10 flex w-full flex-col items-center gap-2 border-t border-crema/10 pt-6 text-xs text-crema/55 sm:flex-row sm:justify-between">
           <p>
             © {ANIO} {BODEGA.nombre}
+            {LEGAL.titular && LEGAL.titular !== BODEGA.nombre && ` · ${LEGAL.titular}`}
+            {LEGAL.cuit && ` · CUIT ${LEGAL.cuit}`}
           </p>
           {desarrollador.nombre && (
             <p>
